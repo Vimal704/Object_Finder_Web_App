@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>YOLO Object Detection</title>
+</head>
+<body>
+    <h1>YOLO Object Detection</h1>
+    <form method="POST" enctype="multipart/form-data">
+        <input type="file" name="image" accept="image/*">
+        <!-- <input type="audio/mp3" name="audio"> -->
+        <input type="file" accept="audio/*" name="audio_file"/>
+        <input type="submit" value="Detect Objects">
+    </form>
+    <br>
+    {% if image_path %}
+    <img src="{{ image_path }}" alt="Input Image">
+    <h2>Detection Results:</h2>
+    <ul>
+        {% for obj in objects %}
+        <li>{{ obj.label }} (Confidence: {{ obj.confidence }}) at ({{ obj.x }}, {{ obj.y }}) with size ({{ obj.width }}x{{ obj.height }})</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+</body>
+</html>
